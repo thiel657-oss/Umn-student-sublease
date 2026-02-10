@@ -1,0 +1,16 @@
+{
+  "name": "Sublet Signal UMN",
+  "short_name": "Sublet UMN",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#fef6ee",
+  "theme_color": "#ff6b35",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
