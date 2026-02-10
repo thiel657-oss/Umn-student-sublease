@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sublet Signal — Prototype</title>
+    <meta name="theme-color" content="#ff6b35" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <header class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Sublet Signal · University of Minnesota</p>
+        <h1>UMN-only sublets, verified by @umn.edu.</h1>
+        <p class="lede">
+          Create an account, verify your UMN email, then find a sublease or post
+          your space in the neighborhoods students actually use.
+        </p>
+        <div class="hero-actions">
+          <button id="postAction" class="primary" disabled>Post a Sublet</button>
+          <button id="browseAction" class="ghost" disabled>Browse Listings</button>
+        </div>
+        <div class="stats">
+          <div>
+            <span>412</span>
+            <label>Active listings</label>
+          </div>
+          <div>
+            <span>32</span>
+            <label>Campuses covered</label>
+          </div>
+          <div>
+            <span>4.8★</span>
+            <label>Average rating</label>
+          </div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Account setup</h3>
+        <div class="verify-card">
+          <p class="featured-title">Step 1: Create your account</p>
+          <input id="email" type="email" placeholder="you@umn.edu" />
+          <button id="verifyBtn" class="tiny">Send verification</button>
+          <p id="verifyStatus" class="featured-meta">Not verified</p>
+        </div>
+        <ul class="feature-list">
+          <li>Step 2: Verify your @umn.edu email</li>
+          <li>Step 3: Browse or post a sublet</li>
+          <li>UMN-only community access</li>
+        </ul>
+        <div class="tag-row">
+          <span>East Bank</span>
+          <span>Stadium Village</span>
+          <span>Dinkytown</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="gate" id="gateMessage">
+        <h2>Verify your UMN email to continue</h2>
+        <p>
+          This marketplace is restricted to University of Minnesota students. Once your
+          <strong>@umn.edu</strong> email is verified, you can browse listings or post your
+          own sublease.
+        </p>
+      </section>
+      <section class="filters">
+        <div class="filter-group">
+          <label>Search</label>
+          <input id="search" type="text" placeholder="Neighborhood, campus, or keyword" />
+        </div>
+        <div class="filter-group">
+          <label>Price (max)</label>
+          <input id="price" type="range" min="500" max="2500" step="50" value="1500" />
+          <span id="priceValue">$1,500</span>
+        </div>
+        <div class="filter-group">
+          <label>Neighborhood</label>
+          <select id="location">
+            <option value="all">All neighborhoods</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Bedrooms</label>
+          <select id="bedrooms">
+            <option value="all">Any</option>
+            <option value="0">Studio</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3+</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Move-in</label>
+          <input id="moveIn" type="date" />
+        </div>
+        <div class="filter-group">
+          <label>Move-out</label>
+          <input id="moveOut" type="date" />
+        </div>
+        <div class="filter-group checkbox">
+          <label>
+            <input id="savedOnly" type="checkbox" />
+            Saved only
+          </label>
+        </div>
+      </section>
+
+      <section class="results">
+        <div class="results-head">
+          <h2>Listings</h2>
+          <div class="results-meta">
+            <p id="resultCount">0 results</p>
+            <p id="savedCount">0 saved</p>
+          </div>
+        </div>
+        <div id="listings" class="cards"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js");
+        });
+      }
+    </script>
+  </body>
+</html>
